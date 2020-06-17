@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.blog.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.zr.blog.domain.Article">
+    <!--@mbg.generated-->
+    <!--@Table blog_article-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="author" jdbcType="INTEGER" property="author" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="open" jdbcType="INTEGER" property="open" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="readnum" jdbcType="INTEGER" property="readnum" />
+    <result column="commentnum" jdbcType="INTEGER" property="commentnum" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, title, content, modifytime, author, `type`, `open`, available, readnum, commentnum,createtime
+  </sql>
+  <insert id="insertHotByUidAndTid">
+    insert sys_user_tag (uid, tid, hot) VALUES (#{uid},#{tid},#{hot})
+  </insert>
+  <update id="incrementHotByUidAndTid">
+    update sys_user_tag set hot=hot+1 where uid=#{uid} and tid = #{tid}
+  </update>
+   <select id="selectHotByUidAndTid" resultType="java.lang.Integer">
+    select count(*) from sys_user_tag where uid=#{uid} and tid=#{tid}
+  </select>
+    <select id="selectHotByUid" resultType="com.zr.blog.domain.Tag">
+      select hot,tid from sys_user_tag where uid=#{uid}
+    </select>
+  <insert id="insertStar">
+    insert into blog_star(uid, aid) VALUES (#{uid},#{aid})
+  </insert>
+  <delete id="deleteStar">
+    delete from blog_star where uid=#{uid} and aid=#{aid}
+  </delete>
+  <select id="queryStar" resultType="java.lang.Integer">
+    select count(*) from blog_star where uid=#{uid} and aid=#{aid}
+  </select>
+  <select id="queryAidsByUid" resultType="java.lang.Integer">
+    select aid from blog_star where uid=#{uid}
+  </select>
+  <select id="queryStarNumByAid" resultType="java.lang.Integer">
+    select count(*) from blog_star where  aid=#{aid}
+  </select>
+  <delete id="deleteStarByAid">
+    delete from blog_star where aid=#{aid}
+  </delete>
+</mapper>

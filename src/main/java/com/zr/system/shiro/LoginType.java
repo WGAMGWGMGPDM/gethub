@@ -1,0 +1,20 @@
+package com.zr.system.shiro;
+
+/**
+ * @Author: 张忍
+ * @Date: 2020-05-08 18:54
+ */
+public enum LoginType {
+    PASSWORD("password"), // 密码登录
+    NOPASSWD("nopassword"); // 免密登录
+
+    private String code;// 状态值
+
+    private LoginType(String code) {
+        this.code = code;
+    }
+    public String getCode () {
+        return code;
+    }
+}
+

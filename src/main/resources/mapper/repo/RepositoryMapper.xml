@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.repo.mapper.RepositoryMapper">
+  <resultMap id="BaseResultMap" type="com.zr.repo.domain.Repository">
+    <!--@mbg.generated-->
+    <!--@Table repo_repository-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="master" jdbcType="INTEGER" property="master" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="pronum" jdbcType="INTEGER" property="pronum" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, `type`, master, createtime, remark, pronum, available, modifytime
+  </sql>
+  <update id="decrementProjectNum">
+    update repo_repository set pronum=pronum-1 where id=#{reopid}
+  </update>
+  <update id="incrementProjectNum">
+    update repo_repository set pronum=pronum+1 where id=#{reopid}
+  </update>
+</mapper>

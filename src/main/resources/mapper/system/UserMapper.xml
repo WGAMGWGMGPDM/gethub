@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.system.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.zr.system.domain.User">
+    <!--@mbg.generated-->
+    <!--@Table sys_user-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="qq" jdbcType="INTEGER" property="qq" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="registertime" jdbcType="TIMESTAMP" property="registertime" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="imgpath" jdbcType="VARCHAR" property="imgpath" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="ordernum" jdbcType="INTEGER" property="ordernum" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, loginname, pwd, sex, address, age, qq, phone, email, remark, registertime, 
+    salt, imgpath, `type`, ordernum, available,openid
+  </sql>
+
+  <select id="queryFidsByUid" resultType="java.lang.Integer">
+    select followid from sys_follow where uid=#{id}
+  </select>
+
+  <delete id="deleteFollow">
+    delete from sys_follow where uid=#{uid} and followid=#{fid}
+  </delete>
+  <select id="queryUserMaxOrderNum" resultType="java.lang.Integer">
+      select max(ordernum) from sys_user
+    </select>
+  <select id="queryFollow" resultType="java.lang.Integer">
+    select count(*) from sys_follow where uid=#{uid} and followid=#{fid}
+  </select>
+  <insert id="saveUserRole">
+      insert into sys_role_user(rid, uid) VALUES (#{rid},#{uid})
+    </insert>
+    <insert id="insertFollow">
+      insert into sys_follow(uid, followid) values (#{uid},#{fid})
+    </insert>
+  <delete id="deleteProjectStarByUid">
+    delete from repo_star where uid=#{uid}
+  </delete>
+  <delete id="deleteArticleStarByUid">
+    delete from blog_star where uid=#{uid}
+  </delete>
+  <delete id="deleteFollowByUid">
+    delete from sys_follow where uid=#{uid}
+  </delete>
+  <delete id="deleteFollowByFid">
+    delete from sys_follow where followid=#{fid}
+  </delete>
+</mapper>

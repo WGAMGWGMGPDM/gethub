@@ -1,0 +1,130 @@
+server:
+  port: 8080
+spring:
+  cache:
+    type: redis
+  datasource: #数据源配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.52.210.15:3306/gethub?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: root
+    druid:
+      max-active: 20
+      min-idle: 5
+      max-wait: 5000
+      initial-size: 10
+      validation-query: select 1
+      stat-view-servlet:
+        enabled: true
+        #        login-username: admin
+        #        login-password: admin
+        #        allow:
+        #        deny:
+        url-pattern: "/druid/*"
+        allow:
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/druid/**"
+        exclusions: '*.js,*.gif,*.jpg,*.jpeg,*.png,*.css,*.ico,*.jsp,/druid/*'
+        principal-session-name: ''
+        session-stat-enable: true
+        session-stat-max-count: 1000
+  thymeleaf:
+    cache: false
+  #全局jackson配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #redis
+  redis:
+    host: 47.52.210.15
+    #password: root
+    port: 6379
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 8
+        min-idle: 0
+        max-wait: 2000
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+##shiro的配置
+shiro:
+  hash-algorithm-name: md5
+  hash-iterations: 2
+  login-url: /index.html
+  unauthorized-url: /unauthorized.html
+  anon-urls:
+    - /api/login/doLogin*
+    - /api/login/doQQLogin*
+    - /api/login/checkLogin
+    - /api/login/captcha*
+    - /api/article/loadAllArticle*
+    - /api/tag/loadAllTagNoPage
+    - /api/article/loadHotArticle*
+    - /api/article/loadArticleInfo*
+    - /api/comment/loadCommentByAid*
+    - /api/registe/registeUser*
+    - /api/registe/activate*
+    - /api/user/userIsExist*
+    - /api/user/userIsBound*
+    - /api/user/sendvalidityForReset*
+    - /api/user/resetPwd*
+    - /api/user/bondQQ*
+    - /api/project/searchProject*
+    - /api/project/loadProjectInfo*
+    - /api/project/loadFileInfo*
+    - /api/project/downloadProject*
+    - /api/druid/**
+    - /api/sysInfo
+    - /api/swagger-ui.html
+    - /api/webjars/**
+    - /api/swagger-resources/**
+    - /api/v2/**
+#    - /api/login/doLogin*
+#    - /api/druid/**
+#    - /api/swagger-ui.html
+#    - /api/webjars/**
+#    - /api/swagger-resources/**
+#    - /api/v2/**
+#    - /api/login/captcha
+#    - /api/login/checkLogin
+  logout-url: /api/login/logout*
+  authc-urls:
+    - /**
+#mybatisplus的配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*/*Mapper.xml
+
+
+##fastdfs设置
+fdfs:
+  so-timeout: 2500       # 读取时间
+  connect-timeout: 600   # 连接超时时间
+  thumb-image:           # 缩略图
+    width: 100
+    height: 100
+  tracker-list:          # tracker服务配置地址列表
+    - 101.200.130.83:22122
+upload:
+  base-url: http://101.200.130.83/
+  allow-types:
+    - text/html
+    - java/*
+    - text/plain
+    - application/octet-stream
+    - image/jpeg
+    - image/png
+    - image/bmp
+temp:
+  path: E:/temp/
+
+
+
+
+

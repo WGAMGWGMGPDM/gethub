@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.blog.mapper.TagMapper">
+  <resultMap id="BaseResultMap" type="com.zr.blog.domain.Tag">
+    <!--@mbg.generated-->
+    <!--@Table blog_tag-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="name" jdbcType="VARCHAR" property="name" />
+    <id column="articlenum" jdbcType="INTEGER" property="articlenum" />
+  </resultMap>
+  <insert id="insertTagArticle">
+    insert into blog_article_tag(aid, tid) VALUES (#{aid},#{tid})
+  </insert>
+  <insert id="insertTag">
+    insert ignore into blog_tag(id, name) values (#{id},#{name})
+  </insert>
+  <update id="decreaseArticleNumByid">
+    update blog_tag set articlenum=articlenum-1 where id=#{tid}
+  </update>
+  <delete id="deleteArticleTagByAid">
+    delete from blog_article_tag where aid=#{aid}
+  </delete>
+  <delete id="deleteArticleTagByTid">
+    delete from blog_article_tag where tid=#{tid}
+  </delete>
+  <select id="queryTidByAid" resultType="java.lang.Integer">
+      select tid from blog_article_tag  where aid=#{aid}
+    </select>
+
+  <select id="queryAidByTid" resultType="java.lang.Integer">
+    select aid from blog_article_tag  where tid=#{tid}
+  </select>
+  <delete id="deleteUserTagHotByiTd">
+    delete from sys_user_tag where tid=#{tid}
+  </delete>
+  <delete id="deleteUserTagHotByUid">
+    delete from sys_user_tag where uid=#{uid}
+  </delete>
+
+</mapper>

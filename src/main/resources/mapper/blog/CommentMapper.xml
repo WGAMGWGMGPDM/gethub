@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.blog.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.zr.blog.domain.Comment">
+    <!--@mbg.generated-->
+    <!--@Table blog_comment-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="comment_user" jdbcType="INTEGER" property="commentUser" />
+    <result column="at_user" jdbcType="INTEGER" property="atUser" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="commenttime" jdbcType="TIMESTAMP" property="commenttime" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="articleid" jdbcType="INTEGER" property="articleid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, comment_user, at_user, content, commenttime, pid, articleid
+  </sql>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.repo.mapper.FileMapper">
+  <resultMap id="BaseResultMap" type="com.zr.repo.domain.File">
+    <!--@mbg.generated-->
+    <!--@Table repo_file-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="filepath" jdbcType="VARCHAR" property="filepath" />
+    <result column="projectid" jdbcType="INTEGER" property="projectid" />
+    <result column="md5code" jdbcType="VARCHAR" property="md5code" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, `type`, modifytime, parentid, filepath, projectid,md5code
+  </sql>
+</mapper>

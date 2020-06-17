@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.system.mapper.LangugeMapper">
+  <resultMap id="BaseResultMap" type="com.zr.system.domain.Languge">
+    <!--@mbg.generated-->
+    <!--@Table sys_languge-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`,num
+  </sql>
+    <update id="incrementProjectNum">
+      update sys_languge set num=num+1 where id=#{langugeId}
+    </update>
+  <update id="decrementProjectNum">
+    update sys_languge set num=num-1 where id=#{langugeId}
+  </update>
+</mapper>

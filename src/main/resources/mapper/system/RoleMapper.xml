@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.system.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.zr.system.domain.Role">
+    <!--@mbg.generated-->
+    <!--@Table sys_role-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, remark, available, createtime
+  </sql>
+  <insert id="insertRoleMenu">
+    insert into sys_role_menu(rid, mid) values(#{rid},#{mid})
+  </insert>
+  <delete id="deleteRoleMenuByRid">
+      delete from sys_role_menu where rid=#{rid}
+    </delete>
+  <delete id="deleteRoleUserByRid">
+    delete from sys_role_user where rid=#{rid}
+  </delete>
+  <delete id="deleteRoleUserByUid">
+    delete from sys_role_user where uid=#{uid}
+  </delete>
+  <delete id="deleteRoleMenuByMid">
+    delete from sys_role_menu where mid=#{mid}
+  </delete>
+  <select id="queryMidsByRid" resultType="java.lang.Integer">
+    select mid from sys_role_menu where rid=#{id}
+  </select>
+    <select id="queryRidsByUid" resultType="java.lang.Integer">
+      select rid from sys_role_user where uid=#{uid}
+    </select>
+  <select id="queryMidsByRids" resultType="java.lang.Integer">
+    select distinct mid from sys_role_menu
+    <where>
+      <foreach collection="rids" open="rid in (" close=")" separator="," item="it">
+        #{it}
+      </foreach>
+    </where>
+  </select>
+</mapper>

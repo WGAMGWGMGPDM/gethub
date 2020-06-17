@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.repo.mapper.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.zr.repo.domain.Project">
+    <!--@mbg.generated-->
+    <!--@Table repo_project-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="repo" jdbcType="INTEGER" property="repo" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="projectpath" jdbcType="VARCHAR" property="projectpath" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="faid" jdbcType="INTEGER" property="faid" />
+    <result column="languge" jdbcType="INTEGER" property="languge" />
+    <result column="master" jdbcType="INTEGER" property="master" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, repo, remark, createtime, modifytime, version, projectpath, available,
+    faid,languge,master
+  </sql>
+  <select id="queryProjectMaxId" resultType="java.lang.Integer">
+    select max(id) from repo_project
+  </select>
+  <insert id="insertStar">
+    insert into repo_star(uid, pid) VALUES (#{uid},#{pid})
+  </insert>
+  <delete id="deleteStar">
+    delete from repo_star where uid=#{uid} and pid=#{pid}
+  </delete>
+    <select id="queryStar" resultType="java.lang.Integer">
+      select count(*) from repo_star where uid=#{uid} and pid=#{pid}
+    </select>
+  <select id="queryPidsByUid" resultType="java.lang.Integer">
+    select pid from repo_star where uid=#{uid}
+  </select>
+  <delete id="deleteStarByPid">
+    delete from repo_star where pid=#{pid}
+  </delete>
+  <select id="queryStarNumByPid" resultType="java.lang.Integer">
+    select count(*) from repo_star where  pid=#{pid}
+  </select>
+</mapper>

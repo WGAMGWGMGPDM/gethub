@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zr.system.mapper.ComplaintMapper">
+  <resultMap id="BaseResultMap" type="com.zr.system.domain.Complaint">
+    <!--@mbg.generated-->
+    <!--@Table sys_complaint-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="complaintid" jdbcType="INTEGER" property="complaintid" />
+    <result column="complaintreason" jdbcType="VARCHAR" property="complaintreason" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="complainttime" jdbcType="TIMESTAMP" property="complainttime" />
+    <result column="solvedtime" jdbcType="TIMESTAMP" property="solvedtime" />
+    <result column="solvedremark" jdbcType="VARCHAR" property="solvedremark" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="complaintname" jdbcType="VARCHAR" property="complaintname" />
+    <result column="solvedid" jdbcType="INTEGER" property="solvedid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `uid`, complaintid, complaintreason, `type`, complainttime, solvedtime, solvedremark, 
+    uname, complaintname,solvedid
+  </sql>
+</mapper>
